@@ -1,6 +1,7 @@
 package xyz.com.marcelo.bizcard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -9,9 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,6 +60,18 @@ fun CreateBizCard() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CreateImageProfile()
+                Divider()
+                CreateInfo()
+                Button(
+                    onClick = {
+                        Log.d("TAG", "CreateBizCard: Clicked")
+                    }) {
+                    Text(
+                        text = "Portfolio",
+                        style = MaterialTheme.typography.button
+                    )
+                }
+
             }
 
         }
@@ -69,7 +80,27 @@ fun CreateBizCard() {
 }
 
 @Composable
-private fun CreateImageProfile() {
+private fun CreateInfo() {
+    Column(modifier = Modifier.padding(5.dp)) {
+        Text(
+            text = "Marcelo R.",
+            style = MaterialTheme.typography.h4,
+            color = MaterialTheme.colors.primaryVariant
+        )
+        Text(
+            text = "Android Compose Programmer",
+            modifier = Modifier.padding(3.dp)
+        )
+        Text(
+            text = "@marcelosanto",
+            modifier = Modifier.padding(3.dp),
+            style = MaterialTheme.typography.subtitle1
+        )
+    }
+}
+
+@Composable
+private fun CreateImageProfile(modifier: Modifier = Modifier) {
     Surface(
         modifier = Modifier
             .size(150.dp)
